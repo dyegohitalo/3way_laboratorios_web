@@ -61,22 +61,25 @@ public class LivroDao implements Dao<Livro>{
     public List<Livro> consultar(String titulo){
         List<Livro> livros = new ArrayList<>();
         try (Connection connection = FabricaConexao.getConnection();) {
-            PreparedStatement ps = connection.prepareStatement(OBTER_LIVRO_COD);
+            PreparedStatement ps = connection.prepareStatement(OBTER_LIVROS_POR_TITULO);
             ps.setString(1, "%"+ titulo +"%");
+
             Resultset resultadoBancoanco ps.executeQuery();
-            livro.setAutor(resultadoBanco.getString("AUTOR"));
-            livro.setAutor(resultadoBanco.getString("COD_LIVRO"));
-            livro.setAutor(resultadoBanco.getString("IMAGEM"));
-            livro.setAutor(resultadoBanco.getDouble("PRECO"));
-            livro.setAutor(resultadoBanco.getString("TITULO"));
-            livro.setAutor(resultadoBanco.getString("DESCRICAO"));
+            while (resultadoBanco.next()) {
+                livro.setAutor(resultadoBanco.getString("AUTOR"));
+                livro.setAutor(resultadoBanco.getString("COD_LIVRO"));
+                livro.setAutor(resultadoBanco.getString("IMAGEM"));
+                livro.setAutor(resultadoBanco.getDouble("PRECO"));
+                livro.setAutor(resultadoBanco.getString("TITULO"));
+                livro.setAutor(resultadoBanco.getString("DESCRICAO"));
 
+                livro.add(livro);
+            }
             connection.close();
-
-            return livro;
         } catch (SQLException e) {
             System.out.println("Erro de conexão com o banco!!!");
             e.printStackTrace();
+            return livro;
         }
     }
 

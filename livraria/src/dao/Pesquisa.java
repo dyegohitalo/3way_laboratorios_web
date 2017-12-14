@@ -6,9 +6,9 @@ import dao.LivroDao;
 public class Pesquisa {
     public static void main(String[] args) {
 
-        LivroDao dao = new LivroDao();
+        LivroDao livroDao = new LivroDao();
 
-        List <livro> livros = livroDao.consultar("A");
+        List <livro> livros = livroDao.consultar("MUNDO");
 
         for(Livro livro: livros) {
             System.out.println("Codigo:" + livro.getCodigo());
