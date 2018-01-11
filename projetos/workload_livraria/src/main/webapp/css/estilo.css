@@ -14,11 +14,11 @@ header {
 .container {
     position: relative;
     margin: 0 auto;
-    width: 1200px;
+    width: 1000px;
     min-heigth: 100%;
 }
 #logo-livraria {
-    width: 300px;
+    width: 400px;
     position: relative;
     padding: 10px;
     margin: 10px;
@@ -50,7 +50,7 @@ footer {
     left: 0;
 }
 #logo-rodape {
-    width: 580px;
+    width: 180px;
     padding-top: 0;
     padding-bottom:10;
 }
