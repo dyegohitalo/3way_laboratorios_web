@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class FabricaConexao {
-	
+
 	public static Connection getConnection() {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -17,7 +17,7 @@ public class FabricaConexao {
 			System.out.println("Erro de conexao com o banco");
 			e.printStackTrace();
 		}
-		
+
 		return null;		
 	}
 }

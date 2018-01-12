@@ -1,7 +1,7 @@
 package model;
 
 public class Livro {
-
+	
 	private Long codigo;
 	private String titulo;
 	private String autor;

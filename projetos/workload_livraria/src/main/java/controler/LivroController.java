@@ -20,6 +20,4 @@ public class LivroController extends HttpServlet {
 		resp.sendRedirect("index.html");
 	}
 
-
-
 }

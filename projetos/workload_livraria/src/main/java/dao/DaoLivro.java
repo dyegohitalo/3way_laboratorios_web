@@ -94,5 +94,17 @@ public class DaoLivro implements Dao<Livro> {
 		return livros;
 	}
 
+	@Override
+	public Livro create(Livro modelo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Livro read(Long codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 
