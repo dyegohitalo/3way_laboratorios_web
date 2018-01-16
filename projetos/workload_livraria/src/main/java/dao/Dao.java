@@ -6,7 +6,7 @@ public interface Dao<ModelType> {
 
 	ModelType create(ModelType modelo);
 
-	ModelType read(Long codigo);
+	ModelType recuperar(Long codigo);
 
 	ModelType update(ModelType modelo);
 

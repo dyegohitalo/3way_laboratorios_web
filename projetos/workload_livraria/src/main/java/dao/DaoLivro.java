@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import model.Livro;
 
 public class DaoLivro implements Dao<Livro> {
@@ -64,44 +61,8 @@ public class DaoLivro implements Dao<Livro> {
 		return null;
 	}
 
-	public List<Livro> consultar(String titulo){
-		List<Livro> livros = new ArrayList<>();
-
-
-		try (Connection con = FabricaConexao.getConnection();){
-			PreparedStatement ps = con.prepareStatement(OBTER_LIVROS_POR_TITULO);
-			ps.setString(1, "%"+titulo+"%");
-
-			ResultSet resultadoBanco = ps.executeQuery();
-			while(resultadoBanco.next()) {
-				Livro livro = new Livro();
-				livro.setCodigo(resultadoBanco.getLong(NOME_COL_COD_LIVRO));
-				livro.setTitulo(resultadoBanco.getString(NOME_COL_TITULO_LIVRO));
-				livro.setAutor(resultadoBanco.getString(NOME_COL_AUTOR_LIVRO));
-				livro.setDescricao(resultadoBanco.getString(NOME_COL_DESC_LIVRO));
-				livro.setImagem(resultadoBanco.getString(NOME_COL_IMAGEM_LIVRO));
-				livro.setPreco(resultadoBanco.getDouble(NOME_COL_PRECO_LIVRO));
-
-				livros.add(livro);
-			}
-
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return livros;
-		}
-
-		return livros;
-	}
-
 	@Override
 	public Livro create(Livro modelo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Livro read(Long codigo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
