@@ -30,4 +30,5 @@ public class ServiceException extends Exception {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
+	
 }
