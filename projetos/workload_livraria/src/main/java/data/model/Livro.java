@@ -4,33 +4,30 @@ import java.util.Arrays;
 
 public class Livro {
 
-		private long id;
-		private String codigo;
+		private long id_livro;
 		private String titulo;
 		private String autor;
 		private String descricao;
 		private double preco;
 		private byte[] imagem;
 
-		public static final String NOME_COL_ID_LIVRO = "id";
+		public static final String NOME_COL_ID_LIVRO = "id_livro";
 		public static final String NOME_COL_AUTOR_LIVRO = "autor";
-		public static final String NOME_COL_COD_LIVRO = "cod_livro";
 		public static final String NOME_COL_TITULO_LIVRO = "titulo";
 		public static final String NOME_COL_DESC_LIVRO = "descricao";
 		public static final String NOME_COL_PRECO_LIVRO = "preco";
 		public static final String NOME_COL_IMAGEM_LIVRO = "imagem";
 
-		public static final String DELETE_LIVRO = "DELETE from estoque e where e.id = ?;";
-		public static final String CREATE_LIVRO = "INSERT into estoque (cod_livro, titulo, descricao, autor, preco, imagem) values(?, ?, ?, ?, ?, ?);";
-		public static final String UPDATE_LIVRO = "UPDATE estoque e set e.? = ? where e.id = ?;";
+		public static final String DELETE_LIVRO = "DELETE from estoque e where e.id_livro = ?;";
+		public static final String CREATE_LIVRO = "INSERT into estoque (id_livro, titulo, descricao, autor, preco, imagem) values(?, ?, ?, ?, ?, ?);";
+		public static final String UPDATE_LIVRO = "UPDATE estoque e set e.? = ? where e.id_livro = ?;";
 
 		public Livro() {
 			super();
 		}
-		public Livro(long id, String codigo, String titulo, String autor, String descricao, double preco, byte[] imagem) {
+		public Livro(long id_livro, String titulo, String autor, String descricao, double preco, byte[] imagem) {
 			super();
-			this.id = id;
-			this.codigo = codigo;
+			this.id_livro = id_livro;
 			this.titulo = titulo;
 			this.autor = autor;
 			this.descricao = descricao;
@@ -38,16 +35,10 @@ public class Livro {
 			this.imagem = imagem;
 		}
 		public long getId() {
-			return id;
+			return id_livro;
 		}
-		public void setId(long id) {
-			this.id = id;
-		}
-		public String getCodigo() {
-			return codigo;
-		}
-		public void setCodigo(String codigo) {
-			this.codigo = codigo;
+		public void setId(long id_livro) {
+			this.id_livro = id_livro;
 		}
 		public String getTitulo() {
 			return titulo;
@@ -84,9 +75,8 @@ public class Livro {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((autor == null) ? 0 : autor.hashCode());
-			result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 			result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-			result = prime * result + (int) (id ^ (id >>> 32));
+			result = prime * result + (int) (id_livro ^ (id_livro >>> 32));
 			result = prime * result + Arrays.hashCode(imagem);
 			long temp;
 			temp = Double.doubleToLongBits(preco);
@@ -108,17 +98,12 @@ public class Livro {
 					return false;
 			} else if (!autor.equals(other.autor))
 				return false;
-			if (codigo == null) {
-				if (other.codigo != null)
-					return false;
-			} else if (!codigo.equals(other.codigo))
-				return false;
 			if (descricao == null) {
 				if (other.descricao != null)
 					return false;
 			} else if (!descricao.equals(other.descricao))
 				return false;
-			if (id != other.id)
+			if (id_livro != other.id_livro)
 				return false;
 			if (!Arrays.equals(imagem, other.imagem))
 				return false;
@@ -133,7 +118,7 @@ public class Livro {
 		}
 		@Override
 		public String toString() {
-			return "Livro [id=" + id + ", codigo=" + codigo + ", titulo=" + titulo + ", autor=" + autor + ", descricao="
+			return "Livro [id=" + id_livro + ", titulo=" + titulo + ", autor=" + autor + ", descricao="
 					+ descricao + ", preco=" + preco + ", imagem=" + Arrays.toString(imagem) + "]";
 		}
 	}

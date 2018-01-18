@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import data.dao.conection.FabricaConexao;
 import data.dao.exception.DAOException;
 import data.model.Livro;
@@ -29,7 +28,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 
 			ResultSet resultadoBanco = ps.executeQuery();
 			Livro livro = criaObjetoLivroFromResultSet(resultadoBanco);
-
+			
 			return livro;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -39,7 +38,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 			throw new DAOException(e);
 		}
 	}
-
+	
 	@Override
 	public Livro recuperar(long id) throws DAOException{
 		try (Connection con = FabricaConexao.getConnection();) {
@@ -48,7 +47,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 
 			ResultSet resultadoBanco = ps.executeQuery();
 			Livro livro = criaObjetoLivroFromResultSet(resultadoBanco);
-
+			
 			return livro;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,7 +109,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 			e.printStackTrace();
 			throw new DAOException(e);
 		}
-
+		
 		return livro;
 	}
 
@@ -121,7 +120,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 			ps.setString(1, chave);
 			ps.setString(2, valor);
 			ps.setString(3, String.valueOf(id));
-
+			
 			int totalLinhasAlteradas = ps.executeUpdate();
 			if (totalLinhasAlteradas > 0) {
 				return recuperar(id);
@@ -131,7 +130,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
 		return null;
 	}
 
@@ -140,7 +139,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 		try (Connection con = FabricaConexao.getConnection();){
 			PreparedStatement ps = con.prepareStatement(Livro.DELETE_LIVRO);
 			ps.setString(1, String.valueOf(modelo.getId()));
-
+			
 			int totalLinhasAlteradas = ps.executeUpdate();
 			if (totalLinhasAlteradas > 0) {
 				return modelo;
