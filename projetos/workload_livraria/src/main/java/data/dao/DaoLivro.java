@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import data.dao.conection.FabricaConexao;
 import data.dao.exception.DAOException;
 import data.model.Livro;
@@ -29,7 +28,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 
 			ResultSet resultadoBanco = ps.executeQuery();
 			Livro livro = criaObjetoLivroFromResultSet(resultadoBanco);
-
+			
 			return livro;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -39,16 +38,16 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 			throw new DAOException(e);
 		}
 	}
-
+	
 	@Override
-	public Livro recuperar(long id) throws DAOException{
+	public Livro recuperar(long id_livro) throws DAOException{
 		try (Connection con = FabricaConexao.getConnection();) {
 			PreparedStatement ps = con.prepareStatement(OBTER_LIVRO_COD);
-			ps.setInt(1, Integer.parseInt(String.valueOf(id)));
+			ps.setInt(1, Integer.parseInt(String.valueOf(id_livro)));
 
 			ResultSet resultadoBanco = ps.executeQuery();
 			Livro livro = criaObjetoLivroFromResultSet(resultadoBanco);
-
+			
 			return livro;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,28 +109,28 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 			e.printStackTrace();
 			throw new DAOException(e);
 		}
-
+		
 		return livro;
 	}
 
 	@Override
-	public Livro update(long id, String chave, String valor) throws DAOException {
+	public Livro update(long id_livro, String chave, String valor) throws DAOException {
 		try (Connection con = FabricaConexao.getConnection();){
 			PreparedStatement ps = con.prepareStatement(Livro.UPDATE_LIVRO);
 			ps.setString(1, chave);
 			ps.setString(2, valor);
-			ps.setString(3, String.valueOf(id));
-
+			ps.setString(3, String.valueOf(id_livro));
+			
 			int totalLinhasAlteradas = ps.executeUpdate();
 			if (totalLinhasAlteradas > 0) {
-				return recuperar(id);
+				return recuperar(id_livro);
 			} else {
-				throw new SQLException("Nao foi possivel atualizar o livro com id: "+id);
+				throw new SQLException("Nao foi possivel atualizar o livro com id: "+id_livro);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
 		return null;
 	}
 
@@ -140,7 +139,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 		try (Connection con = FabricaConexao.getConnection();){
 			PreparedStatement ps = con.prepareStatement(Livro.DELETE_LIVRO);
 			ps.setString(1, String.valueOf(modelo.getId()));
-
+			
 			int totalLinhasAlteradas = ps.executeUpdate();
 			if (totalLinhasAlteradas > 0) {
 				return modelo;
