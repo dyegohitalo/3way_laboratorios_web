@@ -48,9 +48,9 @@
 	</div>
 
 	<div class="container destaque" align="center">
-		<c:forEach var="livro" items="#{livros}">
-			<c:out value="${livro.titulo}" />
-		</c:forEach>
+		<h:forEach var="livro" items="#{livros}">
+			<h:out value="${livro.titulo}" />
+		</h:forEach>
 	</div>
 
 	<footer>
