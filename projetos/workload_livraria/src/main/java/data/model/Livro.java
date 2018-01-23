@@ -118,7 +118,7 @@ public class Livro {
 		}
 		@Override
 		public String toString() {
-			return "Livro [id=" + id_livro + ", titulo=" + titulo + ", autor=" + autor + ", descricao="
+			return "Livro [id_livro=" + id_livro + ", titulo=" + titulo + ", autor=" + autor + ", descricao="
 					+ descricao + ", preco=" + preco + ", imagem=" + Arrays.toString(imagem) + "]";
 		}
 	}

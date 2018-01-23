@@ -12,14 +12,14 @@ import data.model.Livro;
 
 public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 
-	private static final String OBTER_LIVRO_COD = "" + "Select * from estoque e where e.cod_livro = ?;";
+	private static final String OBTER_LIVRO_COD = "" + "Select * from estoque e where e.id_livro = ?;";
 	private static final String OBTER_LIVROS_POR_CHAVE_VALOR = "Select * from estoque e where e.? like ?;";
 
 	@Override
 	public Livro create(Livro modelo) throws DAOException{
 		try (Connection con = FabricaConexao.getConnection();) {
 			PreparedStatement ps = con.prepareStatement(Livro.CREATE_LIVRO);
-			ps.setString(1, modelo.getCodigo());
+			ps.setString(1, modelo.getId_livro());
 			ps.setString(2, modelo.getTitulo());
 			ps.setString(3, modelo.getDescricao());
 			ps.setString(4, modelo.getAutor());
@@ -83,8 +83,8 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 	}
 
 	@Override
-	public List<Livro> livrosPorCodigo(String codigo) throws DAOException {
-		return livrosPorChaveValor(Livro.NOME_COL_COD_LIVRO, codigo);
+	public List<Livro> livrosPorId_livro(String id_livro) throws DAOException {
+		return livrosPorChaveValor(Livro.NOME_COL_ID_LIVRO, id_livro);
 	}
 
 	@Override
@@ -96,7 +96,6 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 		Livro livro = new Livro();
 		try {
 			livro.setId(resultadoBanco.getLong(Livro.NOME_COL_ID_LIVRO));
-			livro.setCodigo(resultadoBanco.getString(Livro.NOME_COL_COD_LIVRO));
 			livro.setTitulo(resultadoBanco.getString(Livro.NOME_COL_TITULO_LIVRO));
 			livro.setDescricao(resultadoBanco.getString(Livro.NOME_COL_DESC_LIVRO));
 			livro.setAutor(resultadoBanco.getString(Livro.NOME_COL_AUTOR_LIVRO));
