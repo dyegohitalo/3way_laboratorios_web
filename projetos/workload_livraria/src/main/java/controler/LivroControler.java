@@ -37,7 +37,7 @@ public class LivroControler extends HttpServlet {
 			List<Livro> livros = livroService.listLivros();
 			req.setAttribute("livros", livros);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/pages/lista_livros.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/pages/lista_livros.xhtml");
 			rd.forward(req, resp);
 		} catch (ServiceException e) {
 			e.printStackTrace();
