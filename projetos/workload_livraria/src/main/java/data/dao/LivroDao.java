@@ -10,16 +10,16 @@ import data.dao.conection.FabricaConexao;
 import data.dao.exception.DAOException;
 import data.model.Livro;
 
-public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
+public class LivroDao implements Dao<Livro>, ProjecoesLivro {
 
-	private static final String OBTER_LIVRO_COD = "" + "Select * from estoque e where e.cod_livro = ?;";
+	private static final String OBTER_LIVRO_COD = "" + "Select * from estoque e where e.id_livro = ?;";
 	private static final String OBTER_LIVROS_POR_CHAVE_VALOR = "Select * from estoque e where e.? like ?;";
 
 	@Override
 	public Livro create(Livro modelo) throws DAOException{
 		try (Connection con = FabricaConexao.getConnection();) {
 			PreparedStatement ps = con.prepareStatement(Livro.CREATE_LIVRO);
-			ps.setString(1, modelo.getCodigo());
+			ps.setLong(1, modelo.getCodigo());
 			ps.setString(2, modelo.getTitulo());
 			ps.setString(3, modelo.getDescricao());
 			ps.setString(4, modelo.getAutor());
@@ -40,10 +40,10 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 	}
 	
 	@Override
-	public Livro recuperar(long id_livro) throws DAOException{
+	public Livro recuperar(long codigo) throws DAOException{
 		try (Connection con = FabricaConexao.getConnection();) {
 			PreparedStatement ps = con.prepareStatement(OBTER_LIVRO_COD);
-			ps.setInt(1, Integer.parseInt(String.valueOf(id_livro)));
+			ps.setInt(1, Integer.parseInt(String.valueOf(codigo)));
 
 			ResultSet resultadoBanco = ps.executeQuery();
 			Livro livro = criaObjetoLivroFromResultSet(resultadoBanco);
@@ -59,13 +59,13 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 	}
 
 	@Override
-	public List<Livro> livrosPorChaveValor(String chave, String valor) throws DAOException{
+	public List<Livro> livrosPorChaveValor(String chave, long codigo) throws DAOException{
 		List<Livro> livros = new ArrayList<>();
 
 		try (Connection con = FabricaConexao.getConnection();) {
 			PreparedStatement ps = con.prepareStatement(OBTER_LIVROS_POR_CHAVE_VALOR);
 			ps.setString(1, chave);
-			ps.setString(2, "%" + valor + "%");
+			ps.setString(2, "%" + codigo + "%");
 
 			ResultSet resultadoBanco = ps.executeQuery();
 			while (resultadoBanco.next()) {
@@ -83,8 +83,8 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 	}
 
 	@Override
-	public List<Livro> livrosPorCodigo(String codigo) throws DAOException {
-		return livrosPorChaveValor(Livro.NOME_COL_COD_LIVRO, codigo);
+	public List<Livro> livrosPorCodigo(long codigo) throws DAOException {
+		return livrosPorChaveValor(Livro.NOME_COL_ID_LIVRO, codigo);
 	}
 
 	@Override
@@ -95,8 +95,7 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 	private Livro criaObjetoLivroFromResultSet(ResultSet resultadoBanco) throws DAOException{
 		Livro livro = new Livro();
 		try {
-			livro.setId(resultadoBanco.getLong(Livro.NOME_COL_ID_LIVRO));
-			livro.setCodigo(resultadoBanco.getString(Livro.NOME_COL_COD_LIVRO));
+			livro.setCodigo(resultadoBanco.getLong(Livro.NOME_COL_ID_LIVRO));
 			livro.setTitulo(resultadoBanco.getString(Livro.NOME_COL_TITULO_LIVRO));
 			livro.setDescricao(resultadoBanco.getString(Livro.NOME_COL_DESC_LIVRO));
 			livro.setAutor(resultadoBanco.getString(Livro.NOME_COL_AUTOR_LIVRO));
@@ -114,18 +113,18 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 	}
 
 	@Override
-	public Livro update(long id_livro, String chave, String valor) throws DAOException {
+	public Livro update(long codigo, String chave, String valor) throws DAOException {
 		try (Connection con = FabricaConexao.getConnection();){
 			PreparedStatement ps = con.prepareStatement(Livro.UPDATE_LIVRO);
 			ps.setString(1, chave);
 			ps.setString(2, valor);
-			ps.setString(3, String.valueOf(id_livro));
+			ps.setString(3, String.valueOf(codigo));
 			
 			int totalLinhasAlteradas = ps.executeUpdate();
 			if (totalLinhasAlteradas > 0) {
-				return recuperar(id_livro);
+				return recuperar(codigo);
 			} else {
-				throw new SQLException("Nao foi possivel atualizar o livro com id: "+id_livro);
+				throw new SQLException("Nao foi possivel atualizar o livro com id: "+codigo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -138,13 +137,13 @@ public class DaoLivro implements Dao<Livro>, ProjecoesLivro {
 	public Livro delete(Livro modelo) throws DAOException {
 		try (Connection con = FabricaConexao.getConnection();){
 			PreparedStatement ps = con.prepareStatement(Livro.DELETE_LIVRO);
-			ps.setString(1, String.valueOf(modelo.getId()));
+			ps.setLong(1, Long.valueOf(modelo.getCodigo()));
 			
 			int totalLinhasAlteradas = ps.executeUpdate();
 			if (totalLinhasAlteradas > 0) {
 				return modelo;
 			} else {
-				throw new SQLException("Nao foi possivel remover o livro com id: " + modelo.getId());
+				throw new SQLException("Nao foi possivel remover o livro com id: " + modelo.getCodigo());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

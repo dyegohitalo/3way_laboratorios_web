@@ -8,7 +8,7 @@ public interface ProjecoesLivro {
 
 	List<Livro> livrosPorChaveValor(String chave, String valor) throws DAOException;
 	
-	List<Livro> livrosPorCodigo(String codigo) throws DAOException;
+	List<Livro> livrosPorCodigo(long codigo) throws DAOException;
 	
 	List<Livro> livrosPorPreco(double preco) throws DAOException;
 }
