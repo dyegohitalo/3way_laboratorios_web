@@ -4,14 +4,14 @@ import java.util.Arrays;
 
 public class Livro {
 
-		private long id_livro;
+		private long codigo;
 		private String titulo;
 		private String autor;
 		private String descricao;
 		private double preco;
 		private byte[] imagem;
 
-		public static final String NOME_COL_ID_LIVRO = "id_livro";
+		public static final String NOME_COL_ID_LIVRO = "codigo";
 		public static final String NOME_COL_AUTOR_LIVRO = "autor";
 		public static final String NOME_COL_TITULO_LIVRO = "titulo";
 		public static final String NOME_COL_DESC_LIVRO = "descricao";
@@ -25,20 +25,20 @@ public class Livro {
 		public Livro() {
 			super();
 		}
-		public Livro(long id_livro, String titulo, String autor, String descricao, double preco, byte[] imagem) {
+		public Livro(long codigo, String titulo, String autor, String descricao, double preco, byte[] imagem) {
 			super();
-			this.id_livro = id_livro;
+			this.codigo = codigo;
 			this.titulo = titulo;
 			this.autor = autor;
 			this.descricao = descricao;
 			this.preco = preco;
 			this.imagem = imagem;
 		}
-		public long getId() {
-			return id_livro;
+		public long getCodigo() {
+			return codigo;
 		}
-		public void setId(long id_livro) {
-			this.id_livro = id_livro;
+		public void setCodigo(long codigo) {
+			this.codigo = codigo;
 		}
 		public String getTitulo() {
 			return titulo;
@@ -76,7 +76,7 @@ public class Livro {
 			int result = 1;
 			result = prime * result + ((autor == null) ? 0 : autor.hashCode());
 			result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-			result = prime * result + (int) (id_livro ^ (id_livro >>> 32));
+			result = prime * result + (int) (codigo ^ (codigo >>> 32));
 			result = prime * result + Arrays.hashCode(imagem);
 			long temp;
 			temp = Double.doubleToLongBits(preco);
@@ -103,7 +103,7 @@ public class Livro {
 					return false;
 			} else if (!descricao.equals(other.descricao))
 				return false;
-			if (id_livro != other.id_livro)
+			if (codigo != other.codigo)
 				return false;
 			if (!Arrays.equals(imagem, other.imagem))
 				return false;
@@ -118,7 +118,7 @@ public class Livro {
 		}
 		@Override
 		public String toString() {
-			return "Livro [id=" + id_livro + ", titulo=" + titulo + ", autor=" + autor + ", descricao="
+			return "Livro [codigo=" + codigo + ", titulo=" + titulo + ", autor=" + autor + ", descricao="
 					+ descricao + ", preco=" + preco + ", imagem=" + Arrays.toString(imagem) + "]";
 		}
 	}

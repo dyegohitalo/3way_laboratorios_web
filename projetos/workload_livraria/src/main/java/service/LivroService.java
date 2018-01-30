@@ -2,7 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-import data.dao.DaoLivro;
+import data.dao.LivroDao;
 import data.dao.exception.DAOException;
 import data.model.Livro;
 import service.exception.ServiceException;
@@ -14,8 +14,8 @@ public class LivroService implements LivroServiceInterface {
 		List<Livro> livros = new ArrayList<>();
 		
 		try {
-			DaoLivro DaoLivro = new DaoLivro();
-			List<Livro> livrosPorPreco = DaoLivro.livrosPorPreco(0);
+			LivroDao LivroDao = new LivroDao();
+			List<Livro> livrosPorPreco = LivroDao.livrosPorPreco(0);
 			if (livrosPorPreco != null) {
 				livros = livrosPorPreco;
 			}
