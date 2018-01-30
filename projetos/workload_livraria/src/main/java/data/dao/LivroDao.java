@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+
 import data.dao.conection.FabricaConexao;
 import data.dao.exception.DAOException;
 import data.model.Livro;
@@ -59,37 +59,9 @@ public class LivroDao implements Dao<Livro>, ProjecoesLivro {
 	}
 
 	@Override
-	public List<Livro> livrosPorChaveValor(String chave, long codigo) throws DAOException{
-		List<Livro> livros = new ArrayList<>();
-
-		try (Connection con = FabricaConexao.getConnection();) {
-			PreparedStatement ps = con.prepareStatement(OBTER_LIVROS_POR_CHAVE_VALOR);
-			ps.setString(1, chave);
-			ps.setString(2, "%" + codigo + "%");
-
-			ResultSet resultadoBanco = ps.executeQuery();
-			while (resultadoBanco.next()) {
-				livros.add(criaObjetoLivroFromResultSet(resultadoBanco));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DAOException("Erro de SQL.", e);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new DAOException(e);
-		}
-
-		return livros;
-	}
-
-	@Override
-	public List<Livro> livrosPorCodigo(long codigo) throws DAOException {
-		return livrosPorChaveValor(Livro.NOME_COL_ID_LIVRO, codigo);
-	}
-
-	@Override
-	public List<Livro> livrosPorPreco(double preco) throws DAOException {
-		return livrosPorChaveValor(Livro.NOME_COL_PRECO_LIVRO, String.valueOf(preco));
+	public List<Livro> livrosCadastrados() throws DAOException {
+		// TODO refazer
+		return null;
 	}
 
 	private Livro criaObjetoLivroFromResultSet(ResultSet resultadoBanco) throws DAOException{
