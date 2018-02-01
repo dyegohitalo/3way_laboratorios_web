@@ -1,15 +1,11 @@
 package data.dao;
 
-import data.dao.exception.DAOException;
+import java.util.List;
 
-public interface Dao<ModelType> {
+import data.model.Livro;
+
+public interface Dao {
 	
-	ModelType create(ModelType modelo) throws DAOException;
-	
-	ModelType recuperar(long codigo) throws DAOException;
-	
-	ModelType update(long codigo, String chave, String valor) throws DAOException;
-	
-	ModelType delete(ModelType modelo) throws DAOException;
+ public List<Livro> listeLivro();
 
 }

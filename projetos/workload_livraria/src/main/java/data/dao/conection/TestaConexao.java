@@ -9,9 +9,9 @@ public class TestaConexao {
 		Connection connection = FabricaConexao.getConnection();
 		
 		if (connection != null) {
-			System.out.println("Conexao estabelecida");
+			System.out.println("Conexão estabelecida com sucesso!!!");
 		} else {
-			System.out.println("Conexao não estabelecida");
+			System.out.println("Conexão não foi estabelecida!");
 		}
 	}
 
