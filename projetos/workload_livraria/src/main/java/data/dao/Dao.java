@@ -6,6 +6,6 @@ import data.model.Livro;
 
 public interface Dao {
 	
- public List<Livro> listeLivro();
+ public List<Livro> listeLivros();
 
 }

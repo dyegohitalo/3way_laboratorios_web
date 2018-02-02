@@ -12,7 +12,7 @@ public class LivroService {
 	public List<Livro> listeLivros(){
 		livroDao = new LivroDao() ;
 	
-		return livroDao.listeLivro();
+		return livroDao.listeLivros();
 	}
 
 }

@@ -1,14 +1,14 @@
 package data.model;
 
 public class Livro {
-	
-//			id SERIAL NOT NULL,
-//			COD_LIVRO varchar(50),
-//			TITULO VARCHAR(100) NOT NULL,
-//			AUTOR VARCHAR(20) NOT NULL,
-//			PRECO NUMERIC NOT NULL,
-//			IMAGEM VARCHAR(80) NOT NULL,
-//			DESCRICAO VARCHAR(80),
+
+	//			id SERIAL NOT NULL,
+	//			COD_LIVRO varchar(50),
+	//			TITULO VARCHAR(100) NOT NULL,
+	//			AUTOR VARCHAR(20) NOT NULL,
+	//			PRECO NUMERIC NOT NULL,
+	//			IMAGEM VARCHAR(80) NOT NULL,
+	//			DESCRICAO VARCHAR(80),
 
 
 	private long id;
@@ -18,9 +18,9 @@ public class Livro {
 	private String titulo;
 	private double preco;
 	private String codLivro;
-	
+
 	public Livro() {
-		
+
 	}
 	public Livro(long id, String autor, String imagem, String descricao, String titulo, double preco, String codLivro) {
 		super();
@@ -129,8 +129,12 @@ public class Livro {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Livro [id=" + id + ", codLivro=" + codLivro + ", titulo=" + titulo + ", autor=" + autor + ", imagem="
+				+ imagem + ", descricao=" + descricao + ", preco=" + preco + "]";
+	}	
+
+
 }

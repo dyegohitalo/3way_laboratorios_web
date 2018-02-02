@@ -12,7 +12,7 @@ import data.model.Livro;
 
 public class LivroDao implements Dao {
 
-	public List<Livro> listeLivro() {
+	public List<Livro> listeLivros() {
 		List<Livro> livros= new ArrayList<Livro>();		
 
 		Connection connection = FabricaConexao.getConnection();
