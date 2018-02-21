@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15191649755930" configfile="/workload_livraria/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf15191658554571" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15191658554572 pf15191658554573" path="/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/lista_livros.xhtml" id="pf15191658554584" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15191658554572" path="/page/lista_livros.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/area_restrita/login.xhtml" id="pf15191658554585" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf15191658554573" path="/page/area_restrita/login.xhtml"/>
+  <links id="pf15191658554572" target="pf15191658554584" source="pf15191658554571" outcome="listar_livros" redirect="true"/>
+  <links id="pf15191658554573" target="pf15191658554585" source="pf15191658554571" outcome="area_restrita" redirect="true"/>
+</pageflow:Pageflow>
