@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<h1>-- > Livros Cadastrados < --</h1>
+	<h1> Livros Cadastrados </h1>
 	</br>
 	<c:forEach items="${livros}" var="livro">
 		<b>Título: </b>

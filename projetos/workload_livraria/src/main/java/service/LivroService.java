@@ -15,4 +15,12 @@ public class LivroService {
 		return livroDao.listeLivros();
 	}
 
+	public LivroDao getLivroDao() {
+		return livroDao;
+	}
+
+	public void setLivroDao(LivroDao livroDao) {
+		this.livroDao = livroDao;
+	}
+
 }

@@ -6,7 +6,6 @@
    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
    version="2.1">
 
-
 	<managed-bean>
 		<managed-bean-name>livroService</managed-bean-name>
 		<managed-bean-class>service.LivroService</managed-bean-class>
@@ -24,15 +23,15 @@
 	</managed-bean>
 	
 	<navigation-rule>
-		<from-view-id>/index.xhtml</from-view-id>
+		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>listar_livros</from-outcome>
-			<to-view-id>/pages/lista_livros.xhtml</to-view-id>
+			<to-view-id>/page/lista_livros.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>area_restrita</from-outcome>
-			<to-view-id>/pages/area_restrita/login.xhtml</to-view-id>
+			<to-view-id>/page/area_restrita/login.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
