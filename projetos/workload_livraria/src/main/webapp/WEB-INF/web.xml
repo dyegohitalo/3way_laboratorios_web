@@ -11,7 +11,7 @@
 	<servlet>
 		<servlet-name>faces</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-	<load-on-startup>1</load-on-startup>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
@@ -23,5 +23,10 @@
 		<servlet-name>faces</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>omega</param-value>
+	</context-param>
 
 </web-app>
